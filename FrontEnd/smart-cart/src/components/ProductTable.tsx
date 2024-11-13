@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 interface Product {
@@ -39,7 +38,6 @@ const ProductTable = () => {
               <th>Product Name</th>
               <th>Units Per Carton</th>
               <th>carton Price</th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -49,19 +47,33 @@ const ProductTable = () => {
                 <td>{product.name}</td>
                 <td>{product.unitsPerCarton}</td>
                 <td>{product.cartonPrice}</td>
-
-                <td>
-                  <Button
-                    className="btn btn-primary btn-sm"
-                    onClick={() => navigate("/calculator")}
-                  >
-                    Calculate
-                  </Button>
-                </td>
               </tr>
             ))}
           </tbody>
         </table>
+        <br />
+
+        <div
+          className="btn-group"
+          role="group"
+          aria-label="Basic mixed styles example"
+        >
+          <button
+            type="button"
+            className="btn btn-danger"
+            style={{ marginRight: "10px" }}
+            onClick={() => navigate("/price-list")}
+          >
+            Show Price List
+          </button>
+          <button
+            type="button"
+            className="btn btn-warning"
+            onClick={() => navigate("/calculator")}
+          >
+            Calculate
+          </button>
+        </div>
       </div>
     </>
   );
