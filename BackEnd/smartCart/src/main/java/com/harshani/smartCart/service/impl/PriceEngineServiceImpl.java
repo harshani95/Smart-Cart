@@ -1,10 +1,21 @@
 package com.harshani.smartCart.service.impl;
 
+import com.harshani.smartCart.entity.Product;
 import com.harshani.smartCart.service.PriceEngineService;
+import com.harshani.smartCart.service.ProductService;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class PriceEngineServiceImpl implements PriceEngineService {
+
+    private final ProductService productService;
+
+    public PriceEngineServiceImpl(ProductService productService) {
+        this.productService = productService;
+    }
 
     @Override
     public double calculateSingleUnitPrice(int unitsPerCarton, double cartonPrice) {
@@ -35,5 +46,25 @@ public class PriceEngineServiceImpl implements PriceEngineService {
         }
 
         return total;
+    }
+
+    @Override
+    public List<String> generatePriceList(long id) {
+
+        Product product = productService.getProductById(id);
+        List<String> priceList = new ArrayList<>();
+
+        int unitsPerCarton = product.getUnitsPerCarton();
+        double cartonPrice = product.getCartonPrice();
+
+        for (int quantity = 1; quantity <= 50; quantity++) {
+            int cartons = quantity / unitsPerCarton;  // Calculate full cartons
+            int singleUnits = quantity % unitsPerCarton;  // Remaining single units
+
+            double totalPrice = calculateTotalPrice(unitsPerCarton, cartonPrice, cartons, singleUnits);
+            priceList.add("Quantity: " + quantity + ", Price: $" + String.format("%.2f", totalPrice));
+        }
+
+        return priceList;
     }
 }
