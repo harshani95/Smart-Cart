@@ -24,25 +24,21 @@ public class PriceEngineServiceImpl implements PriceEngineService {
 
     @Override
     public double calculateTotalPrice(int unitsPerCarton, double cartonPrice, int cartons, int singleUnits) {
-        /*int cartons = quantity / unitsPerCarton;
-        int singleUnits = quantity % unitsPerCarton;
 
-        double singleUnitPrice = calculateSingleUnitPrice( unitsPerCarton, cartonPrice);
-        double total = (cartons * cartonPrice) + (singleUnits * singleUnitPrice);
+        int additionalCartons = singleUnits / unitsPerCarton;
+        int remainingSingleUnits = singleUnits % unitsPerCarton;
 
-        if (cartons >= 3) {
-            total -= cartons * cartonPrice * 0.1; // 10% discount
-        }*/
+        cartons += additionalCartons;
 
         double cartonTotalPrice = cartons * cartonPrice;
 
-        double singleUnitPrice = calculateSingleUnitPrice(unitsPerCarton, cartonPrice);
-        double singleUnitTotalPrice = singleUnits * singleUnitPrice;
+        double singleUnitPrice = (cartonPrice / unitsPerCarton) * 1.3;
 
+        double singleUnitTotalPrice = remainingSingleUnits * singleUnitPrice;
         double total = cartonTotalPrice + singleUnitTotalPrice;
 
         if (cartons >= 3) {
-            total -= cartonTotalPrice * 0.1;  // Discount only on cartons
+            total -= cartonTotalPrice * 0.1;
         }
 
         return total;
