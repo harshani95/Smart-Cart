@@ -34,10 +34,10 @@ const ProductTable = () => {
         <table className="table table-hover table-bordered">
           <thead>
             <tr className="table-primary">
-              <th>Id</th>
+              <th>ID</th>
               <th>Product Name</th>
               <th>Units Per Carton</th>
-              <th>carton Price</th>
+              <th>Carton Price</th>
             </tr>
           </thead>
           <tbody>

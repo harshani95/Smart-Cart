@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 
 const Calculator = () => {
   const [productId, setProductId] = useState("");
-  //const [quantity, setQuantity] = useState("");
   const [cartons, setCartons] = useState("");
   const [singleUnits, setSingleUnits] = useState("");
   const [totalPrice, setTotalPrice] = useState(null);
-  //const [message, setMessage] = useState("");
 
   const calculatePrice = async () => {
     try {
@@ -17,7 +15,6 @@ const Calculator = () => {
         {
           params: {
             id: productId,
-            //quantity: quantity,
             cartons: cartons,
             singleUnits: singleUnits,
           },
@@ -25,9 +22,7 @@ const Calculator = () => {
       );
 
       setTotalPrice(response.data.data);
-      //setMessage(response.data.message);
     } catch (error) {
-      //setMessage("Error calculating price");
       console.error(error);
     }
   };
@@ -40,7 +35,9 @@ const Calculator = () => {
         <div className="row">
           <div className="card col-md-6 offset-md-3">
             <br />
-            <h3 className="text-center">Price Calculator</h3>
+            <h1 className="text-center" style={{ color: "#0a3d62" }}>
+              PRICE CALC
+            </h1>
             <div className="card-body">
               <form>
                 <div className="form-group">
@@ -57,21 +54,6 @@ const Calculator = () => {
                   />
                 </div>
                 <br />
-                {/* <div className="form-group">
-                  <label htmlFor="qty">Quantity : </label>
-                  <input
-                    onChange={(e) => {
-                      setQuantity(e.target.value);
-                    }}
-                    value={quantity}
-                    type="number"
-                    placeholder="QTY"
-                    id="qty"
-                    className="form-control"
-                    required
-                  />
-                </div>
-                <br /> */}
 
                 <div className="form-group">
                   <label htmlFor="cartons">Carton : </label>
@@ -80,8 +62,9 @@ const Calculator = () => {
                       setCartons(e.target.value);
                     }}
                     value={cartons}
+                    defaultValue={0}
                     type="number"
-                    placeholder="cartons"
+                    placeholder="Enter no of Cartons"
                     id="cartons"
                     className="form-control"
                     required
@@ -97,7 +80,8 @@ const Calculator = () => {
                     }}
                     value={singleUnits}
                     type="number"
-                    placeholder="Single Unit"
+                    placeholder="Enter no of Single Units"
+                    defaultValue={0}
                     id="singleUnits"
                     className="form-control"
                     required
@@ -121,7 +105,6 @@ const Calculator = () => {
                 </Link>
                 <br />
                 <br />
-                {/* {message && <p>{message}</p>} */}
 
                 {totalPrice !== null && (
                   <div>

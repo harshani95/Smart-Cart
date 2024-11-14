@@ -7,7 +7,7 @@ const PriceList = () => {
   const [priceList, setPriceList] = useState([]);
 
   const getPriceList = async () => {
-    setPriceList([]); // Clear previous price list
+    setPriceList([]);
 
     try {
       const response = await axios.get(
@@ -16,7 +16,7 @@ const PriceList = () => {
           params: { id: productId },
         }
       );
-      setPriceList(response.data.data); // Set the fetched price list
+      setPriceList(response.data.data);
     } catch (error) {
       console.error(error);
     }
@@ -26,9 +26,10 @@ const PriceList = () => {
     <>
       <br />
       <div className="container">
-        <h2 className="text-center">Price List</h2>
+        <h1 className="text-center" style={{ color: "#2c3e50" }}>
+          PRICE LIST
+        </h1>
 
-        {/* Product ID Input */}
         <div className="form-group">
           <label htmlFor="productId">Product ID: </label>
           <input
@@ -42,7 +43,6 @@ const PriceList = () => {
         </div>
         <br />
 
-        {/* Fetch Button */}
         <button className="btn btn-primary" onClick={getPriceList}>
           Get Price List
         </button>
@@ -68,7 +68,7 @@ const PriceList = () => {
               {priceList.map((entry, index) => {
                 const [quantity, price] = entry
                   .split(", ")
-                  .map((item: string) => item.split(": ")[1]); // Split the formatted string into quantity and price
+                  .map((item: string) => item.split(": ")[1]);
                 return (
                   <tr key={index}>
                     <td>{quantity}</td>

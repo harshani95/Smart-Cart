@@ -54,8 +54,8 @@ public class PriceEngineServiceImpl implements PriceEngineService {
         double cartonPrice = product.getCartonPrice();
 
         for (int quantity = 1; quantity <= 50; quantity++) {
-            int cartons = quantity / unitsPerCarton;  // Calculate full cartons
-            int singleUnits = quantity % unitsPerCarton;  // Remaining single units
+            int cartons = quantity / unitsPerCarton;
+            int singleUnits = quantity % unitsPerCarton;
 
             double totalPrice = calculateTotalPrice(unitsPerCarton, cartonPrice, cartons, singleUnits);
             priceList.add("Quantity: " + quantity + ", Price: $" + String.format("%.2f", totalPrice));

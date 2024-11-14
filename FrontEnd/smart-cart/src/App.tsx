@@ -1,4 +1,3 @@
-import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProductTable from "./components/ProductTable";
 import Calculator from "./components/Calculator";
